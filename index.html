@@ -1,0 +1,918 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voice of Bang Nam Phueng 🌴 เสียงจากบางน้ำผึ้ง</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #f3f0ff;
+            --card-bg: #ffffff;
+            --primary: #0f172a;
+            --accent: #ff3366;
+            --accent-green: #00ffcc;
+            --accent-yellow: #ffde00;
+            --text-main: #0f172a;
+            --text-muted: #475569;
+            --border-color: #0f172a;
+            --shadow-brutal: 4px 4px 0px #0f172a;
+            --shadow-brutal-sm: 2px 2px 0px #0f172a;
+            --radius-box: 16px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif, -apple-system, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        /* Header / Navbar */
+        header {
+            background-color: #ffffff;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 3px solid var(--border-color);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header h1 {
+            font-size: 1.2rem;
+            font-weight: 800;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        nav a {
+            color: var(--text-main);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 700;
+            transition: color 0.2s;
+        }
+
+        nav a:hover {
+            color: var(--accent);
+        }
+
+        .admin-toggle-btn {
+            background: var(--accent-yellow);
+            border: 2px solid var(--border-color);
+            color: var(--primary);
+            padding: 0.4rem 1rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 800;
+            cursor: pointer;
+            box-shadow: var(--shadow-brutal-sm);
+            transition: all 0.1s;
+        }
+
+        .admin-toggle-btn:active {
+            transform: translate(2px, 2px);
+            box-shadow: none;
+        }
+
+        .admin-toggle-btn.active {
+            background: var(--accent);
+            color: white;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 5rem 1.5rem 3.5rem 1.5rem;
+            max-width: 850px;
+            margin: 0 auto;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background-color: var(--accent-green);
+            color: var(--primary);
+            border: 2px solid var(--border-color);
+            padding: 0.35rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 800;
+            margin-bottom: 1.25rem;
+            box-shadow: var(--shadow-brutal-sm);
+            transform: rotate(-2deg);
+        }
+
+        .hero h2 {
+            font-size: 3.25rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 1.25rem;
+            letter-spacing: -1.5px;
+            line-height: 1.1;
+        }
+
+        .hero p {
+            font-size: 1.15rem;
+            color: var(--text-muted);
+            margin-bottom: 2.5rem;
+            font-weight: 600;
+        }
+
+        .btn {
+            background-color: var(--accent);
+            color: white;
+            padding: 0.9rem 2.5rem;
+            border: 3px solid var(--border-color);
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 800;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            box-shadow: var(--shadow-brutal);
+            transition: all 0.1s ease;
+        }
+
+        .btn:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 6px 6px 0px #0f172a;
+        }
+
+        .btn:active {
+            transform: translate(2px, 2px);
+            box-shadow: none;
+        }
+
+        .btn-outline {
+            background-color: #fff;
+            color: var(--primary);
+            border: 2px solid var(--border-color);
+            padding: 0.6rem 1.25rem;
+            border-radius: 12px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: var(--shadow-brutal-sm);
+            transition: all 0.1s;
+            margin-top: 0.5rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .btn-outline:active {
+            transform: translate(2px, 2px);
+            box-shadow: none;
+        }
+
+        .btn-secondary-outline {
+            background-color: var(--accent-yellow);
+            color: var(--primary);
+            border: 2px solid var(--border-color);
+            padding: 0.7rem 1.25rem;
+            border-radius: 12px;
+            font-size: 0.9rem;
+            font-weight: 800;
+            cursor: pointer;
+            box-shadow: var(--shadow-brutal-sm);
+            transition: all 0.1s;
+        }
+
+        .btn-secondary-outline:active {
+            transform: translate(2px, 2px);
+            box-shadow: none;
+        }
+
+        .btn-danger-outline {
+            background-color: #ffccd5;
+            color: #9b111e;
+            border: 2px solid var(--border-color);
+            padding: 0.7rem 1.25rem;
+            border-radius: 12px;
+            font-size: 0.9rem;
+            font-weight: 800;
+            cursor: pointer;
+            box-shadow: var(--shadow-brutal-sm);
+            transition: all 0.1s;
+            margin-top: 1.5rem;
+        }
+
+        .btn-danger-outline:active {
+            transform: translate(2px, 2px);
+            box-shadow: none;
+        }
+
+        /* Container */
+        .container {
+            max-width: 780px;
+            margin: 0 auto 4rem auto;
+            padding: 0 1.5rem;
+        }
+
+        /* Sections */
+        section {
+            background: var(--card-bg);
+            margin-bottom: 2.5rem;
+            padding: 2.5rem;
+            border-radius: var(--radius-box);
+            border: 3px solid var(--border-color);
+            box-shadow: var(--shadow-brutal);
+        }
+
+        h3 {
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        section > p {
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+            font-weight: 600;
+        }
+
+        /* Stats Counter Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .stat-card {
+            background: var(--bg-color);
+            border: 2px solid var(--border-color);
+            padding: 1rem 0.5rem;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: var(--shadow-brutal-sm);
+        }
+
+        .stat-card .num {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: var(--primary);
+        }
+
+        .stat-card .label {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            font-weight: 700;
+            margin-top: 0.2rem;
+        }
+
+        /* Issues Grid */
+        .issues-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+            gap: 1rem;
+            margin-top: 1.25rem;
+        }
+
+        .issue-card {
+            background: var(--accent-yellow);
+            padding: 1.25rem 1rem;
+            border-radius: 12px;
+            text-align: center;
+            font-size: 0.95rem;
+            font-weight: 800;
+            color: var(--primary);
+            border: 2px solid var(--border-color);
+            box-shadow: var(--shadow-brutal-sm);
+            transform: rotate(1deg);
+        }
+
+        .issue-card:nth-child(even) {
+            background: var(--accent-green);
+            transform: rotate(-1deg);
+        }
+
+        /* Form Controls */
+        .form-group {
+            margin-bottom: 1.75rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.6rem;
+            font-weight: 800;
+            font-size: 0.95rem;
+            color: var(--primary);
+        }
+
+        input[type="text"], select, textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            background-color: #faf5ff;
+            font-family: inherit;
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--primary);
+            box-shadow: var(--shadow-brutal-sm);
+        }
+
+        input[type="file"] {
+            width: 100%;
+            padding: 1rem;
+            border: 2px dashed var(--border-color);
+            border-radius: 12px;
+            background-color: #faf5ff;
+            font-family: inherit;
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            cursor: pointer;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            background-color: #fff;
+            border-color: var(--accent);
+        }
+
+        .preview-container {
+            margin-top: 1rem;
+            display: none;
+            max-width: 220px;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 2px solid var(--border-color);
+            box-shadow: var(--shadow-brutal-sm);
+        }
+
+        .preview-container img {
+            width: 100%;
+            display: block;
+        }
+
+        /* Filter Controls */
+        .filter-bar {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            background: #fff;
+            border: 2px solid var(--border-color);
+            color: var(--text-main);
+            padding: 0.5rem 1.1rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 800;
+            cursor: pointer;
+            box-shadow: var(--shadow-brutal-sm);
+            transition: all 0.1s;
+        }
+
+        .filter-btn:active {
+            transform: translate(2px, 2px);
+            box-shadow: none;
+        }
+
+        .filter-btn.active {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* Dashboard Tracker List */
+        .tracker-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+        }
+
+        .tracker-item {
+            background: #fff;
+            border: 2px solid var(--border-color);
+            padding: 1.5rem;
+            border-radius: var(--radius-box);
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 1.5rem;
+            box-shadow: var(--shadow-brutal-sm);
+        }
+
+        .tracker-info h4 {
+            font-size: 1.1rem;
+            color: var(--primary);
+            margin-bottom: 0.35rem;
+            font-weight: 800;
+        }
+
+        .tracker-info p {
+            font-size: 0.875rem;
+            color: var(--text-muted);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .tracker-details {
+            font-size: 0.95rem;
+            color: var(--text-main);
+            font-weight: 600;
+            margin-top: 0.75rem;
+            background: #f8fafc;
+            padding: 0.85rem 1rem;
+            border-radius: 12px;
+            border: 2px solid var(--border-color);
+        }
+
+        .tracker-img {
+            margin-top: 0.75rem;
+            max-width: 140px;
+            border-radius: 12px;
+            display: block;
+            border: 2px solid var(--border-color);
+        }
+
+        .badge {
+            padding: 0.4rem 1rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 800;
+            white-space: nowrap;
+            border: 2px solid var(--border-color);
+        }
+
+        .badge.pending { background-color: var(--accent-yellow); color: var(--primary); }
+        .badge.progress { background-color: #60a5fa; color: white; }
+        .badge.resolved { background-color: var(--accent-green); color: var(--primary); }
+        .badge.urgent { background-color: var(--accent); color: white; }
+
+        /* Admin Controls */
+        .admin-controls {
+            display: none;
+            margin-top: 1rem;
+            padding-top: 0.75rem;
+            border-top: 2px dashed var(--border-color);
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 0.85rem;
+            font-weight: 700;
+        }
+
+        .admin-controls select {
+            padding: 0.4rem 0.75rem;
+            font-size: 0.85rem;
+            width: auto;
+            background: #fff;
+            border: 2px solid var(--border-color);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 3.5rem 1rem;
+            color: var(--primary);
+            font-weight: 800;
+            font-size: 0.95rem;
+            border-top: 3px solid var(--border-color);
+            margin-top: 5rem;
+            background: #fff;
+        }
+
+        @media (max-width: 600px) {
+            .hero h2 { font-size: 2.35rem; }
+            header { padding: 1rem; }
+            .nav-right nav { display: none; }
+            section { padding: 1.75rem; }
+            .tracker-item { flex-direction: column; align-items: flex-start; }
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>🌴 Voice of Bang Nam Phueng</h1>
+        <div class="nav-right">
+            <nav>
+                <a href="#about">เกี่ยวกับ</a>
+                <a href="#report">แจ้งปัญหา</a>
+                <a href="#tracker">เช็กสถานะ</a>
+            </nav>
+            <button class="admin-toggle-btn" id="adminToggleBtn" onclick="toggleAdminMode()">🔒 แอดมิน</button>
+        </div>
+    </header>
+
+    <div class="hero">
+        <div class="hero-badge">✨ Vibe เช็คอินตลาดน้ำบางน้ำผึ้ง</div>
+        <h2>เสียงจากบางน้ำผึ้ง 📢</h2>
+        <p>แพลตฟอร์มแจ้งปัญหาและซัพพอร์ตคอมมูนิตี้ เพื่อชาวบางน้ำผึ้งและนักท่องเที่ยวทุกคน ส่งเสียงของคุณให้ดังขึ้นได้ที่นี่!</p>
+        <a href="#report" class="btn">🚀 ลุย! แจ้งปัญหาเลย</a>
+    </div>
+
+    <div class="container">
+        <!-- หลักการและเหตุผล -->
+        <section id="about">
+            <h3>📖 ทำไมต้องมีเว็บนี้?</h3>
+            <p>พื้นที่ตลาดน้ำบางน้ำผึ้งพวกเราใช้งานกันทุกวัน ปัญหาจุกจิกเลยมีเพียบ! เว็บนี้ทำขึ้นมาเพื่อรวบรวมเสียงของพวกเราทุกคนให้ส่งตรงถึงผู้ดูแลแบบเรียลไทม์ แก้ไขไว ไม่ตกหล่น 💯</p>
+            
+            <p style="margin-bottom: 0.75rem; font-weight: 800; color: var(--primary);">🔥 ปัญหาฮิตที่มักเจอ:</p>
+            <div class="issues-grid">
+                <div class="issue-card">🪵 ทางเดินพัง</div>
+                <div class="issue-card">💧 น้ำขังแฉะ</div>
+                <div class="issue-card">💡 ไฟมืดตึ๊บ</div>
+                <div class="issue-card">🛠️ ของพังชำรุด</div>
+                <div class="issue-card">👥 คนแน่นเกิน</div>
+            </div>
+        </section>
+
+        <!-- ฟอร์มแจ้งปัญหา -->
+        <section id="report">
+            <h3>✍️ ฟอร์มแจ้งปัญหาด่วน</h3>
+            <p>เจอจุดไหนพัง ถ่ายรูปแล้วส่งข้อมูลมาให้เราจัดการได้เลย!</p>
+            
+            <form id="reportForm" onsubmit="handleFormSubmit(event)">
+                <div class="form-group">
+                    <label>ประเภทปัญหา</label>
+                    <select id="issueType" required>
+                        <option value="">-- เลือกหมวดหมู่ปัญหา --</option>
+                        <option value="ทางเดินชำรุด">ทางเดินชำรุด</option>
+                        <option value="น้ำขัง">น้ำขัง</option>
+                        <option value="แสงสว่างไม่เพียงพอ">แสงสว่างไม่เพียงพอ</option>
+                        <option value="สิ่งอำนวยความสะดวกชำรุด">สิ่งอำนวยความสะดวกชำรุด</option>
+                        <option value="บริเวณแออัด">บริเวณแออัด</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label>ระดับความด่วนจี๋ ⚡</label>
+                    <select id="issuePriority" required>
+                        <option value="ปกติ">🟢 ปกติ (แจ้งเตือนเฉยๆ)</option>
+                        <option value="เร่งด่วน">🟡 เร่งด่วน (เริ่มกระทบเยอะ)</option>
+                        <option value="อันตราย">🔴 อันตราย / เสี่ยงอุบัติเหตุ!</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>พิกัดจุดเกิดเหตุ 📍</label>
+                    <input type="text" id="locationInput" placeholder="เช่น โซนเหนือ, สะพานริมน้ำ หรือกดปุ่ม GPS ด้านล่าง" required>
+                    <button type="button" class="btn-outline" onclick="getLocation()">📍 ดึงพิกัด GPS อัตโนมัติ</button>
+                </div>
+
+                <div class="form-group">
+                    <label>รายละเอียดเพิ่มเติม</label>
+                    <textarea id="issueDesc" rows="4" placeholder="เล่าให้ฟังหน่อยว่าเจออะไรมา..."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>แนบรูปถ่าย (กดถ่ายหรือเลือกจากคลังได้เลย)</label>
+                    <input type="file" id="imageInput" accept="image/*" onchange="previewImage(event)">
+                    <div class="preview-container" id="previewBox">
+                        <img id="imagePreview" alt="Preview">
+                    </div>
+                </div>
+
+                <button type="submit" class="btn" style="width: 100%; margin-top: 1rem;">✨ ส่งข้อมูลแจ้งปัญหา</button>
+            </form>
+        </section>
+
+        <!-- หน้าแดชบอร์ดติดตามสถานะปัญหา -->
+        <section id="tracker">
+            <h3>📊 บอร์ดเช็กสถานะเรียลไทม์</h3>
+            <p>อัปเดตสถานะปัญหาในพื้นที่แบบสดๆ ร้อนๆ</p>
+            
+            <!-- กล่องสถิติสรุปภาพรวม -->
+            <div class="stats-grid" id="statsGrid">
+                <div class="stat-card">
+                    <div class="num" id="statTotal">0</div>
+                    <div class="label">ทั้งหมด</div>
+                </div>
+                <div class="stat-card">
+                    <div class="num" id="statPending" style="color: #b7791f;">0</div>
+                    <div class="label">รอดำเนินการ</div>
+                </div>
+                <div class="stat-card">
+                    <div class="num" id="statProgress" style="color: #2563eb;">0</div>
+                    <div class="label">กำลังลุยซ่อม</div>
+                </div>
+                <div class="stat-card">
+                    <div class="num" id="statResolved" style="color: #16a34a;">0</div>
+                    <div class="label">เคลียร์แล้ว</div>
+                </div>
+            </div>
+
+            <!-- ปุ่มตัวกรอง -->
+            <div class="filter-bar">
+                <button class="filter-btn active" onclick="setFilter('all', this)">🔥 ทั้งหมด</button>
+                <button class="filter-btn" onclick="setFilter('รอดำเนินการ', this)">⏳ รอดำเนินการ</button>
+                <button class="filter-btn" onclick="setFilter('กำลังดำเนินการ', this)">🛠️ กำลังลุยซ่อม</button>
+                <button class="filter-btn" onclick="setFilter('แก้ไขเรียบร้อย', this)">🎉 เคลียร์แล้ว</button>
+            </div>
+
+            <div class="tracker-list" id="trackerList">
+                <!-- รายการจะโหลดมาแสดงที่นี่ -->
+            </div>
+
+            <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+                <button type="button" class="btn-secondary-outline" onclick="addDemoData()">⚡ เพิ่มตัวอย่างทดสอบ</button>
+                <button type="button" class="btn-danger-outline" onclick="clearAllData()">🗑️ ล้างข้อมูลทั้งหมด</button>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2569 Voice of Bang Nam Phueng ✌️ Crafted with Gen Z Vibe</p>
+    </footer>
+
+    <script>
+        let currentBase64Image = '';
+        let isAdminMode = false;
+        let currentFilter = 'all';
+
+        function toggleAdminMode() {
+            const btn = document.getElementById('adminToggleBtn');
+
+            if (!isAdminMode) {
+                const password = prompt('🔑 ใส่รหัสแอดมิน (รหัสเทส: 1234)');
+                if (password === null) return;
+
+                if (password === '1234') {
+                    isAdminMode = true;
+                    btn.textContent = '🔓 ปิดแอดมิน';
+                    btn.classList.add('active');
+                    alert('✨ เปิดโหมดแอดมินสำเร็จ!');
+                } else {
+                    alert('❌ รหัสผ่านผิดจ้า!');
+                    return;
+                }
+            } else {
+                isAdminMode = false;
+                btn.textContent = '🔒 แอดมิน';
+                btn.classList.remove('active');
+                alert('🔒 ปิดโหมดแอดมินเรียบร้อย');
+            }
+            renderTracker();
+        }
+
+        function setFilter(status, btnElement) {
+            currentFilter = status;
+            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+            btnElement.classList.add('active');
+            renderTracker();
+        }
+
+        function previewImage(event) {
+            const file = event.target.files[0];
+            const previewBox = document.getElementById('previewBox');
+            const imagePreview = document.getElementById('imagePreview');
+
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    currentBase64Image = e.target.result;
+                    imagePreview.src = currentBase64Image;
+                    previewBox.style.display = 'block';
+                }
+                reader.readAsDataURL(file);
+            } else {
+                currentBase64Image = '';
+                imagePreview.src = '';
+                previewBox.style.display = 'none';
+            }
+        }
+
+        function getLocation() {
+            const locationInput = document.getElementById('locationInput');
+            if (navigator.geolocation) {
+                locationInput.value = "📍 กำลังดึงพิกัด GPS...";
+                navigator.geolocation.getCurrentPosition(
+                    (position) => {
+                        const lat = position.coords.latitude.toFixed(6);
+                        const lng = position.coords.longitude.toFixed(6);
+                        locationInput.value = `พิกัด GPS: Lat ${lat}, Lng ${lng}`;
+                    },
+                    (error) => {
+                        alert('ไม่สามารถดึงพิกัดได้ อนุญาตโลเคชั่นก่อนนะ หรือพิมพ์ระบุเองได้เลย!');
+                        locationInput.value = "";
+                    }
+                );
+            } else {
+                alert('เบราว์เซอร์ไม่รองรับ GPS');
+            }
+        }
+
+        function getInitialReports() {
+            return [
+                {
+                    id: 1,
+                    type: "🪵 ทางเดินไม้ชำรุด",
+                    location: "โซนเหนือ (สะพานริมน้ำ)",
+                    priority: "อันตราย",
+                    desc: "แผ่นไม้เริ่มโยกเยก เสี่ยงอันตรายมาก รีบซ่อมด่วนจี๋!",
+                    image: "",
+                    date: "6 พ.ย. 2569 เวลา 14:30 น.",
+                    status: "กำลังดำเนินการ",
+                    statusClass: "progress"
+                },
+                {
+                    id: 2,
+                    type: "💡 หลอดไฟทางเดินดับ",
+                    location: "โซนกลางตลาด",
+                    priority: "เร่งด่วน",
+                    desc: "ทางเดินมืดมากตอนเย็น เดินมองไม่เห็นทางเลย",
+                    image: "",
+                    date: "5 พ.ย. 2569 เวลา 18:15 น.",
+                    status: "แก้ไขเรียบร้อย",
+                    statusClass: "resolved"
+                }
+            ];
+        }
+
+        function updateStats(reports) {
+            document.getElementById('statTotal').textContent = reports.length;
+            document.getElementById('statPending').textContent = reports.filter(r => r.status === 'รอดำเนินการ').length;
+            document.getElementById('statProgress').textContent = reports.filter(r => r.status === 'กำลังดำเนินการ').length;
+            document.getElementById('statResolved').textContent = reports.filter(r => r.status === 'แก้ไขเรียบร้อย').length;
+        }
+
+        function renderTracker() {
+            const trackerList = document.getElementById('trackerList');
+            let reports = JSON.parse(localStorage.getItem('bangnamphueng_reports'));
+
+            if (!reports) {
+                reports = getInitialReports();
+                localStorage.setItem('bangnamphueng_reports', JSON.stringify(reports));
+            }
+
+            updateStats(reports);
+            trackerList.innerHTML = '';
+
+            let filteredReports = reports;
+            if (currentFilter !== 'all') {
+                filteredReports = reports.filter(item => item.status === currentFilter);
+            }
+
+            if (filteredReports.length === 0) {
+                trackerList.innerHTML = `<p style="text-align:center; color: var(--text-muted); margin: 2rem 0; font-weight: 700;">📭 ยังไม่มีข้อมูลในหมวด "${currentFilter}"</p>`;
+                return;
+            }
+
+            filteredReports.forEach(item => {
+                let badgeText = item.status;
+                let badgeClass = item.statusClass;
+
+                let adminBoxHtml = '';
+                if(isAdminMode) {
+                    adminBoxHtml = `
+                        <div class="admin-controls" style="display: flex;">
+                            <span>⚙️ เปลี่ยนสถานะด่วน:</span>
+                            <select onchange="updateStatus(${item.id}, this.value)">
+                                <option value="รอดำเนินการ" ${item.status === 'รอดำเนินการ' ? 'selected' : ''}>รอดำเนินการ</option>
+                                <option value="กำลังดำเนินการ" ${item.status === 'กำลังดำเนินการ' ? 'selected' : ''}>กำลังดำเนินการ</option>
+                                <option value="แก้ไขเรียบร้อย" ${item.status === 'แก้ไขเรียบร้อย' ? 'selected' : ''}>แก้ไขเรียบร้อย</option>
+                            </select>
+                        </div>
+                    `;
+                }
+
+                let html = `
+                    <div class="tracker-item">
+                        <div class="tracker-info" style="width: 100%;">
+                            <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem;">
+                                <h4>${item.type} (${item.location})</h4>
+                                <span class="badge ${badgeClass}">${badgeText}</span>
+                            </div>
+                            <p>📅 แจ้งเมื่อ: ${item.date} | ⚡ ระดับ: ${item.priority}</p>
+                            ${item.desc ? `<div class="tracker-details"><strong>📝 รายละเอียด:</strong> ${item.desc}</div>` : ''}
+                            ${item.image ? `<img src="${item.image}" class="tracker-img" alt="Evidence">` : ''}
+                            ${adminBoxHtml}
+                        </div>
+                    </div>
+                `;
+                trackerList.innerHTML += html;
+            });
+        }
+
+        function updateStatus(id, newStatus) {
+            let reports = JSON.parse(localStorage.getItem('bangnamphueng_reports')) || [];
+            let target = reports.find(r => r.id === id);
+            if(target) {
+                target.status = newStatus;
+                if(newStatus === 'รอดำเนินการ') target.statusClass = 'pending';
+                else if(newStatus === 'กำลังดำเนินการ') target.statusClass = 'progress';
+                else if(newStatus === 'แก้ไขเรียบร้อย') target.statusClass = 'resolved';
+
+                localStorage.setItem('bangnamphueng_reports', JSON.stringify(reports));
+                renderTracker();
+            }
+        }
+
+        function handleFormSubmit(event) {
+            event.preventDefault();
+
+            const type = document.getElementById('issueType').value;
+            const priority = document.getElementById('issuePriority').value;
+            const location = document.getElementById('locationInput').value;
+            const desc = document.getElementById('issueDesc').value;
+
+            // ดึงวันที่และเวลาแบบละเอียด (ชั่วโมง:นาที)
+            const now = new Date();
+            const dateOptions = { year: 'numeric', month: 'short', day: 'numeric' };
+            const timeOptions = { hour: '2-digit', minute: '2-digit', hour12: false };
+            const dateStr = now.toLocaleDateString('th-TH', dateOptions);
+            const timeStr = now.toLocaleTimeString('th-TH', timeOptions);
+            const fullDateTimeStr = `${dateStr} เวลา ${timeStr} น.`;
+
+            let status = "รอดำเนินการ";
+            let statusClass = "pending";
+            if(priority === "อันตราย") {
+                statusClass = "urgent";
+            }
+
+            const newReport = {
+                id: Date.now(),
+                type: type,
+                location: location,
+                priority: priority,
+                desc: desc,
+                image: currentBase64Image,
+                date: fullDateTimeStr,
+                status: status,
+                statusClass: statusClass
+            };
+
+            let reports = JSON.parse(localStorage.getItem('bangnamphueng_reports')) || getInitialReports();
+            reports.unshift(newReport);
+
+            localStorage.setItem('bangnamphueng_reports', JSON.stringify(reports));
+
+            document.getElementById('reportForm').reset();
+            document.getElementById('previewBox').style.display = 'none';
+            currentBase64Image = '';
+
+            currentFilter = 'all';
+            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelector('.filter-btn').classList.add('active');
+
+            renderTracker();
+            alert('🎉 ส่งข้อมูลเรียบร้อย! ระบบบันทึกข้อมูลพร้อมเวลาเป๊ะๆ ลงบอร์ดเรียบร้อยแล้วจ้า');
+            window.location.hash = '#tracker';
+        }
+
+        function addDemoData() {
+            let reports = JSON.parse(localStorage.getItem('bangnamphueng_reports')) || getInitialReports();
+            
+            const now = new Date();
+            const dateStr = now.toLocaleDateString('th-TH', { year: 'numeric', month: 'short', day: 'numeric' });
+            const timeStr = now.toLocaleTimeString('th-TH', { hour: '2-digit', minute: '2-digit', hour12: false });
+
+            const demoItem = {
+                id: Date.now(),
+                type: "💧 น้ำขัง",
+                location: "โซนร้านอาหารริมน้ำ",
+                priority: "เร่งด่วน",
+                desc: "น้ำขังแฉะมากตอนเดินซื้อของ ช่วยมาดูหน่อยงับ",
+                image: "",
+                date: `${dateStr} เวลา ${timeStr} น.`,
+                status: "รอดำเนินการ",
+                statusClass: "pending"
+            };
+            reports.unshift(demoItem);
+            localStorage.setItem('bangnamphueng_reports', JSON.stringify(reports));
+            renderTracker();
+            alert('⚡ เพิ่มข้อมูลตัวอย่างสำเร็จ!');
+        }
+
+        function clearAllData() {
+            if(confirm('⚠️ แน่ใจนะว่าจะล้างข้อมูลทั้งหมด?')) {
+                localStorage.removeItem('bangnamphueng_reports');
+                renderTracker();
+                alert('🧹 ล้างข้อมูลเกลี้ยงแล้ว!');
+            }
+        }
+
+        window.onload = function() {
+            renderTracker();
+        };
+    </script>
+
+</body>
+</html>
