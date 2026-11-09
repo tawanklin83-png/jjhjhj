@@ -34,7 +34,6 @@
             line-height: 1.6;
         }
 
-        /* Header / Navbar */
         header {
             background-color: #ffffff;
             position: sticky;
@@ -97,7 +96,6 @@
             color: white;
         }
 
-        /* Hero Section */
         .hero {
             text-align: center;
             padding: 5rem 1.5rem 3.5rem 1.5rem;
@@ -219,14 +217,12 @@
             box-shadow: none;
         }
 
-        /* Container */
         .container {
             max-width: 780px;
             margin: 0 auto 4rem auto;
             padding: 0 1.5rem;
         }
 
-        /* Sections */
         section {
             background: var(--card-bg);
             margin-bottom: 2.5rem;
@@ -252,7 +248,6 @@
             font-weight: 600;
         }
 
-        /* Stats Counter Grid */
         .stats-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -282,7 +277,6 @@
             margin-top: 0.2rem;
         }
 
-        /* Issues Grid */
         .issues-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
@@ -308,7 +302,6 @@
             transform: rotate(-1deg);
         }
 
-        /* Form Controls */
         .form-group {
             margin-bottom: 1.75rem;
         }
@@ -368,7 +361,6 @@
             display: block;
         }
 
-        /* Filter Controls */
         .filter-bar {
             display: flex;
             gap: 0.5rem;
@@ -399,7 +391,6 @@
             color: white;
         }
 
-        /* Dashboard Tracker List */
         .tracker-list {
             display: flex;
             flex-direction: column;
@@ -465,7 +456,6 @@
         .badge.resolved { background-color: var(--accent-green); color: var(--primary); }
         .badge.urgent { background-color: var(--accent); color: white; }
 
-        /* Admin Controls */
         .admin-controls {
             display: none;
             margin-top: 1rem;
@@ -485,7 +475,6 @@
             border: 2px solid var(--border-color);
         }
 
-        /* Footer */
         footer {
             text-align: center;
             padding: 3.5rem 1rem;
@@ -506,6 +495,32 @@
             .stats-grid { grid-template-columns: repeat(2, 1fr); }
         }
     </style>
+
+    <!-- 🟢 ส่วนเชื่อมต่อ Firebase (ใส่ Config ของคุณไว้ที่นี่) -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { getFirestore, collection, addDoc, getDocs, updateDoc, doc, deleteDoc, onSnapshot, query, orderBy } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyBk3EAkiNCgJh1g2ycEdQp2Vtgp99YSJYY",
+            authDomain: "fffb-c4b11.firebaseapp.com",
+            projectId: "fffb-c4b11",
+            storageBucket: "fffb-c4b11.firebasestorage.app",
+            messagingSenderId: "986090980443",
+            appId: "1:986090980443:web:3331853e61f1de96b3eb7e",
+            measurementId: "G-DHYLJX3CX5"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        window.db = db;
+        window.dbModules = { collection, addDoc, getDocs, updateDoc, doc, deleteDoc, onSnapshot, query, orderBy };
+        
+        if (typeof initFirebaseApp === 'function') {
+            initFirebaseApp();
+        }
+    </script>
 </head>
 <body>
 
@@ -529,7 +544,6 @@
     </div>
 
     <div class="container">
-        <!-- หลักการและเหตุผล -->
         <section id="about">
             <h3>📖 ทำไมต้องมีเว็บนี้?</h3>
             <p>พื้นที่ตลาดน้ำบางน้ำผึ้งพวกเราใช้งานกันทุกวัน ปัญหาจุกจิกเลยมีเพียบ! เว็บนี้ทำขึ้นมาเพื่อรวบรวมเสียงของพวกเราทุกคนให้ส่งตรงถึงผู้ดูแลแบบเรียลไทม์ แก้ไขไว ไม่ตกหล่น 💯</p>
@@ -544,7 +558,6 @@
             </div>
         </section>
 
-        <!-- ฟอร์มแจ้งปัญหา -->
         <section id="report">
             <h3>✍️ ฟอร์มแจ้งปัญหาด่วน</h3>
             <p>เจอจุดไหนพัง ถ่ายรูปแล้วส่งข้อมูลมาให้เราจัดการได้เลย!</p>
@@ -594,12 +607,10 @@
             </form>
         </section>
 
-        <!-- หน้าแดชบอร์ดติดตามสถานะปัญหา -->
         <section id="tracker">
             <h3>📊 บอร์ดเช็กสถานะเรียลไทม์</h3>
             <p>อัปเดตสถานะปัญหาในพื้นที่แบบสดๆ ร้อนๆ</p>
             
-            <!-- กล่องสถิติสรุปภาพรวม -->
             <div class="stats-grid" id="statsGrid">
                 <div class="stat-card">
                     <div class="num" id="statTotal">0</div>
@@ -619,7 +630,6 @@
                 </div>
             </div>
 
-            <!-- ปุ่มตัวกรอง -->
             <div class="filter-bar">
                 <button class="filter-btn active" onclick="setFilter('all', this)">🔥 ทั้งหมด</button>
                 <button class="filter-btn" onclick="setFilter('รอดำเนินการ', this)">⏳ รอดำเนินการ</button>
@@ -632,7 +642,7 @@
             </div>
 
             <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
-                <button type="button" class="btn-secondary-outline" onclick="addDemoData()">⚡ เพิ่มตัวอย่างทดสอบ</button>
+                <button type="button" class="btn-secondary-outline" onclick="addDemoDataToFirebase()">⚡ เพิ่มตัวอย่างทดสอบ</button>
                 <button type="button" class="btn-danger-outline" onclick="clearAllData()">🗑️ ล้างข้อมูลทั้งหมด</button>
             </div>
         </section>
@@ -642,14 +652,15 @@
         <p>&copy; 2569 Voice of Bang Nam Phueng ✌️ Crafted with Gen Z Vibe</p>
     </footer>
 
+    <!-- 🟢 ส่วน JavaScript ที่เชื่อมต่อกับ Firebase Database จริง -->
     <script>
         let currentBase64Image = '';
         let isAdminMode = false;
         let currentFilter = 'all';
+        let allReports = [];
 
         function toggleAdminMode() {
             const btn = document.getElementById('adminToggleBtn');
-
             if (!isAdminMode) {
                 const password = prompt('🔑 ใส่รหัสแอดมิน (รหัสเทส: 1234)');
                 if (password === null) return;
@@ -719,31 +730,19 @@
             }
         }
 
-        function getInitialReports() {
-            return [
-                {
-                    id: 1,
-                    type: "🪵 ทางเดินไม้ชำรุด",
-                    location: "โซนเหนือ (สะพานริมน้ำ)",
-                    priority: "อันตราย",
-                    desc: "แผ่นไม้เริ่มโยกเยก เสี่ยงอันตรายมาก รีบซ่อมด่วนจี๋!",
-                    image: "",
-                    date: "6 พ.ย. 2569 เวลา 14:30 น.",
-                    status: "กำลังดำเนินการ",
-                    statusClass: "progress"
-                },
-                {
-                    id: 2,
-                    type: "💡 หลอดไฟทางเดินดับ",
-                    location: "โซนกลางตลาด",
-                    priority: "เร่งด่วน",
-                    desc: "ทางเดินมืดมากตอนเย็น เดินมองไม่เห็นทางเลย",
-                    image: "",
-                    date: "5 พ.ย. 2569 เวลา 18:15 น.",
-                    status: "แก้ไขเรียบร้อย",
-                    statusClass: "resolved"
-                }
-            ];
+        // เริ่มต้นดึงข้อมูลแบบ Real-time จาก Firebase
+        function initFirebaseApp() {
+            if (!window.db || !window.dbModules) return;
+            const { collection, onSnapshot, query } = window.dbModules;
+            const q = query(collection(window.db, "reports"));
+
+            onSnapshot(q, (snapshot) => {
+                allReports = [];
+                snapshot.forEach((doc) => {
+                    allReports.push({ docId: doc.id, ...doc.data() });
+                });
+                renderTracker();
+            });
         }
 
         function updateStats(reports) {
@@ -755,19 +754,12 @@
 
         function renderTracker() {
             const trackerList = document.getElementById('trackerList');
-            let reports = JSON.parse(localStorage.getItem('bangnamphueng_reports'));
-
-            if (!reports) {
-                reports = getInitialReports();
-                localStorage.setItem('bangnamphueng_reports', JSON.stringify(reports));
-            }
-
-            updateStats(reports);
+            updateStats(allReports);
             trackerList.innerHTML = '';
 
-            let filteredReports = reports;
+            let filteredReports = allReports;
             if (currentFilter !== 'all') {
-                filteredReports = reports.filter(item => item.status === currentFilter);
+                filteredReports = allReports.filter(item => item.status === currentFilter);
             }
 
             if (filteredReports.length === 0) {
@@ -784,7 +776,7 @@
                     adminBoxHtml = `
                         <div class="admin-controls" style="display: flex;">
                             <span>⚙️ เปลี่ยนสถานะด่วน:</span>
-                            <select onchange="updateStatus(${item.id}, this.value)">
+                            <select onchange="updateStatus('${item.docId}', this.value)">
                                 <option value="รอดำเนินการ" ${item.status === 'รอดำเนินการ' ? 'selected' : ''}>รอดำเนินการ</option>
                                 <option value="กำลังดำเนินการ" ${item.status === 'กำลังดำเนินการ' ? 'selected' : ''}>กำลังดำเนินการ</option>
                                 <option value="แก้ไขเรียบร้อย" ${item.status === 'แก้ไขเรียบร้อย' ? 'selected' : ''}>แก้ไขเรียบร้อย</option>
@@ -811,34 +803,38 @@
             });
         }
 
-        function updateStatus(id, newStatus) {
-            let reports = JSON.parse(localStorage.getItem('bangnamphueng_reports')) || [];
-            let target = reports.find(r => r.id === id);
-            if(target) {
-                target.status = newStatus;
-                if(newStatus === 'รอดำเนินการ') target.statusClass = 'pending';
-                else if(newStatus === 'กำลังดำเนินการ') target.statusClass = 'progress';
-                else if(newStatus === 'แก้ไขเรียบร้อย') target.statusClass = 'resolved';
+        // อัปเดตสถานะผ่าน Firebase
+        async function updateStatus(docId, newStatus) {
+            if (!window.db) return;
+            const { doc, updateDoc } = window.dbModules;
+            let statusClass = 'pending';
+            if(newStatus === 'รอดำเนินการ') statusClass = 'pending';
+            else if(newStatus === 'กำลังดำเนินการ') statusClass = 'progress';
+            else if(newStatus === 'แก้ไขเรียบร้อย') statusClass = 'resolved';
 
-                localStorage.setItem('bangnamphueng_reports', JSON.stringify(reports));
-                renderTracker();
-            }
+            const reportRef = doc(window.db, "reports", docId);
+            await updateDoc(reportRef, {
+                status: newStatus,
+                statusClass: statusClass
+            });
         }
 
-        function handleFormSubmit(event) {
+        // ส่งฟอร์มบันทึกข้อมูลเข้า Firebase Cloud
+        async function handleFormSubmit(event) {
             event.preventDefault();
+            if (!window.db) {
+                alert('⚠️ กำลังเชื่อมต่อฐานข้อมูล กรุณารอสักครู่...');
+                return;
+            }
 
             const type = document.getElementById('issueType').value;
             const priority = document.getElementById('issuePriority').value;
             const location = document.getElementById('locationInput').value;
             const desc = document.getElementById('issueDesc').value;
 
-            // ดึงวันที่และเวลาแบบละเอียด (ชั่วโมง:นาที)
             const now = new Date();
-            const dateOptions = { year: 'numeric', month: 'short', day: 'numeric' };
-            const timeOptions = { hour: '2-digit', minute: '2-digit', hour12: false };
-            const dateStr = now.toLocaleDateString('th-TH', dateOptions);
-            const timeStr = now.toLocaleTimeString('th-TH', timeOptions);
+            const dateStr = now.toLocaleDateString('th-TH', { year: 'numeric', month: 'short', day: 'numeric' });
+            const timeStr = now.toLocaleTimeString('th-TH', { hour: '2-digit', minute: '2-digit', hour12: false });
             const fullDateTimeStr = `${dateStr} เวลา ${timeStr} น.`;
 
             let status = "รอดำเนินการ";
@@ -859,27 +855,29 @@
                 statusClass: statusClass
             };
 
-            let reports = JSON.parse(localStorage.getItem('bangnamphueng_reports')) || getInitialReports();
-            reports.unshift(newReport);
+            try {
+                const { collection, addDoc } = window.dbModules;
+                await addDoc(collection(window.db, "reports"), newReport);
 
-            localStorage.setItem('bangnamphueng_reports', JSON.stringify(reports));
+                document.getElementById('reportForm').reset();
+                document.getElementById('previewBox').style.display = 'none';
+                currentBase64Image = '';
 
-            document.getElementById('reportForm').reset();
-            document.getElementById('previewBox').style.display = 'none';
-            currentBase64Image = '';
+                currentFilter = 'all';
+                document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+                document.querySelector('.filter-btn').classList.add('active');
 
-            currentFilter = 'all';
-            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
-            document.querySelector('.filter-btn').classList.add('active');
-
-            renderTracker();
-            alert('🎉 ส่งข้อมูลเรียบร้อย! ระบบบันทึกข้อมูลพร้อมเวลาเป๊ะๆ ลงบอร์ดเรียบร้อยแล้วจ้า');
-            window.location.hash = '#tracker';
+                alert('🎉 ส่งข้อมูลเรียบร้อย! ข้อมูลซิงค์ขึ้นคลาวด์ทุกเครื่องทันทีจ้า');
+                window.location.hash = '#tracker';
+            } catch (error) {
+                console.error("Error adding document: ", error);
+                alert('❌ เกิดข้อผิดพลาดในการบันทึกข้อมูล');
+            }
         }
 
-        function addDemoData() {
-            let reports = JSON.parse(localStorage.getItem('bangnamphueng_reports')) || getInitialReports();
-            
+        async function addDemoDataToFirebase() {
+            if (!window.db) return;
+            const { collection, addDoc } = window.dbModules;
             const now = new Date();
             const dateStr = now.toLocaleDateString('th-TH', { year: 'numeric', month: 'short', day: 'numeric' });
             const timeStr = now.toLocaleTimeString('th-TH', { hour: '2-digit', minute: '2-digit', hour12: false });
@@ -895,22 +893,19 @@
                 status: "รอดำเนินการ",
                 statusClass: "pending"
             };
-            reports.unshift(demoItem);
-            localStorage.setItem('bangnamphueng_reports', JSON.stringify(reports));
-            renderTracker();
-            alert('⚡ เพิ่มข้อมูลตัวอย่างสำเร็จ!');
+
+            await addDoc(collection(window.db, "reports"), demoItem);
+            alert('⚡ เพิ่มข้อมูลตัวอย่างขึ้นคลาวด์สำเร็จ!');
         }
 
         function clearAllData() {
-            if(confirm('⚠️ แน่ใจนะว่าจะล้างข้อมูลทั้งหมด?')) {
-                localStorage.removeItem('bangnamphueng_reports');
-                renderTracker();
-                alert('🧹 ล้างข้อมูลเกลี้ยงแล้ว!');
-            }
+            alert('🧹 ระบบใช้ฐานข้อมูลกลางบนคลาวด์แล้ว ข้อมูลจะปลอดภัยและซิงค์กันทุกเครื่องจ้า!');
         }
 
         window.onload = function() {
-            renderTracker();
+            if (window.db) {
+                initFirebaseApp();
+            }
         };
     </script>
 
